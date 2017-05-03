@@ -16,6 +16,11 @@ module.exports = {
 	 query: {
            presets: ['react', 'es2015']
          }
+      },
+      {
+         test: /\.scss$/,
+         exclude: /node_modules/,
+         loader: 'style-loader!css-loader?modules!sass-loader'
       }
     ]
   }
