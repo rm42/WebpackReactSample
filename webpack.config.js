@@ -8,19 +8,32 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.scss']
   },
   module: {
-    loaders: [
+    rules: [
       {
-         test: /.jsx?$/,
-	 exclude: /node_modules/,
-	 loader: 'babel-loader',
-	 query: {
-           presets: ['react', 'es2015']
-         }
+        test: /.jsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['react', 'es2015']
+            }
+          }
+        ]
       },
       {
-         test: /\.scss$/,
-         exclude: /node_modules/,
-         loader: 'style-loader!css-loader?modules!sass-loader'
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+          'sass-loader'
+        ]
       }
     ]
   }
